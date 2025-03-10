@@ -1,0 +1,55 @@
+/* navbar.css */
+
+/* Ensures that the AppBar doesn't apply additional margins or padding */
+.navbar-app .MuiToolbar-root {
+  justify-content: space-between; /* Aligns logo/title to the left and navigation to the right */
+}
+
+/* Ensures the logo and title are aligned and spaced correctly */
+.navbar-app .MuiIconButton-root {
+  padding: 8px; /* Adjust padding as needed */
+}
+
+/* Style for links and buttons */
+.navbar-app .MuiButton-root {
+  color: inherit; /* Inherits the color from the theme */
+  font-size: 1rem; /* Set font size here as needed */
+  
+}
+
+/* Additional styles to handle spacing and alignment */
+.navbar-app .MuiStack-root {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* Style to remove the underline from the Select input component */
+.navbar-app .MuiSelect-select {
+  &:before {
+    border-bottom: none;
+  }
+  &:hover:not(.Mui-disabled):before {
+    border-bottom: none;
+  }
+}
+
+/* Adjust the size of the logo if needed */
+.navbar-app .MuiIconButton-edgeStart {
+  margin-right: 12px; /* Adjust the spacing between logo and title */
+}
+
+/* Align the title text vertically */
+.navbar-app .MuiTypography-root {
+  align-self: center;
+}
+
+/* Dark and Light theme styles */
+.navbar-app.dark {
+  background-color: #333;
+  color: white;
+}
+
+.navbar-app.light {
+  background-color: #eee;
+  color: black;
+}

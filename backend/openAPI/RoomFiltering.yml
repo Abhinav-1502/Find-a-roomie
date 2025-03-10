@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Room Filtering API
+  description: REST API for filtering rooms using CRUD operations.
+  version: '1.0'
+servers:
+  - url: http://localhost:8080
+paths:
+  /roomlistings/filters:
+    get:
+      operationId: get-saved-filters
+      description: Get saved filters
+      responses:
+        "200":
+          description: Successful retrieval
+          content:
+            application/json:
+              example:
+                - id: "filter123"
+                  name: "City Center Under 800"
+                  parameters:
+                    $ref: "#/components/schemas/FilterParameters"
+                - id: "filter456"
+                  name: "Suburb"
+                  parameters:
+                    $ref: "#/components/schemas/FilterParameters"
+        "401":
+          $ref: "#/components/responses/AuthenticationError"
+    post:
+      operationId: save-filter
+      description: Save a new filter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavedFilterInput"
+      responses:
+        "201":
+          description: Filter saved successfully
+          content:
+            application/json:
+              example:
+                id: "filter123"
+                name: "City Center Under 800"
+                parameters:
+                  $ref: "#/components/schemas/FilterParameters"
+        "400":
+          $ref: "#/components/responses/InvalidInputError"
+        "401":
+          $ref: "#/components/responses/AuthenticationError"
+  /roomlistings/filters/{id}:
+    put:
+      operationId: update-filter
+      description: Update a saved filter by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: "filter123"
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SavedFilterInput"
+      responses:
+        "200":
+          description: Filter updated successfully
+          content:
+            application/json:
+              example:
+                id: "filter123"
+                name: "City Center Under 900"
+                parameters:
+                  $ref: "#/components/schemas/FilterParameters"
+        "400":
+          $ref: "#/components/responses/InvalidInputError"
+        "401":
+          $ref: "#/components/responses/AuthenticationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    delete:
+      operationId: delete-filter
+      description: Delete a saved filter by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          example: "filter123"
+          schema:
+            type: string
+      responses:
+        "204":
+          $ref: "#/components/responses/FilterDeleted"
+        "401":
+          $ref: "#/components/responses/AuthenticationError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+
+components:
+  responses:
+    FilterDeleted:
+      description: Filter deleted successfully
+      content:
+        application/json:
+          example:
+            message: "Filter deleted successfully"
+
+    AuthenticationError:
+      description: User is not authenticated
+      content:
+        application/json:
+          example:
+            code: "AuthenticationError"
+            message: "User is not authenticated"
+
+    InvalidInputError:
+      description: Invalid input data
+      content:
+        application/json:
+          example:
+            code: "InvalidInputError"
+            message: "Invalid input data"
+
+    NotFoundError:
+      description: Filter not found
+      content:
+        application/json:
+          example:
+            code: "NotFoundError"
+            message: "Filter not found"
+
+  schemas:
+    FilterParameters:
+      type: object
+      properties:
+        location:
+          type: string
+          examples:
+            - "City Center"
+        price_range:
+          type: string
+          examples:
+            - "500-800"
+        amenities:
+          type: array
+          items:
+            type: string
+          examples:
+            - ["WiFi", "Laundry"]
+        lease_duration:
+          type: string
+          examples:
+            - "6 months"
+        room_size:
+          type: string
+          examples:
+            - "Medium"
+        pet_policy:
+          type: string
+          examples:
+            - "No Pets"
+        available_from:
+          type: string
+          format: date
+          examples:
+            - "2023-12-01"
+
+    SavedFilterInput:
+      type: object
+      properties:
+        name:
+          type: string
+          examples:
+            - "City Center Under 800"
+        parameters:
+          $ref: "#/components/schemas/FilterParameters"

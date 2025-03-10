@@ -1,0 +1,10 @@
+Schema:{
+    usrIed: String    (sessionUsername)
+    postId: String (room-{name}) – (roommate – {sessionUsername})
+    Name: String ( Property Name – User Name)
+    Location: {
+        Address: String
+        
+    }
+}
+

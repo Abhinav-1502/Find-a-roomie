@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "start-backend": "node backend/server.js",
+    "start-frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/aos": "^3.0.7"
+  }
+}

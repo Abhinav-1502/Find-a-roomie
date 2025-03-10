@@ -1,0 +1,32 @@
+.footer-container {
+  background-color: #f9f9f9; /* Or any color you prefer */
+  color: #333;
+  border-top: 1px solid #ccc;
+}
+
+.footer-container a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-container .MuiIconButton-root {
+  color: #333;
+  margin-right: 8px;
+}
+
+.footer-container .MuiTextField-root {
+  background: #fff;
+  border-radius: 4px;
+}
+
+.footer-container .MuiButton-containedPrimary {
+  background-color: #4caf50; /* Green color for the button */
+  margin-top: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .footer-container .MuiGrid-container {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,21 @@
+.userProfilePaper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2em 30%;
+  }
+  
+  .user-details{
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10em !important;
+    padding-top: 2em !important;
+  }
+  .textData{
+    margin-bottom: 2em !important;
+    vertical-align: middle !important;
+  }
+  
+  

@@ -1,0 +1,16 @@
+.login-div{
+    text-align: center;
+    margin-top: 2em;
+}
+
+.login-box{
+    margin: auto 30%;
+}
+
+.hoverHand{
+    margin-top: 1em;
+}
+.hoverHand:hover{
+   
+    cursor: pointer;
+}

@@ -1,0 +1,201 @@
+openapi: 3.1.0
+info:
+  title: Profile Management API
+  description: API for managing user profiles, including profile creation, retrieval, update, and deletion.
+  version: '1.0'
+servers:
+  - url: https://localhost:8080
+paths:
+  /api/profiles:
+    post:
+      operationId: create-profile
+      description: Create a new user profile.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProfileRequest'
+      responses:
+        "201":
+          description: Profile created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        "400":
+          description: Bad request, e.g., missing fields or invalid data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /api/profiles/{username}:
+    get:
+      operationId: get-profile
+      description: Retrieve user profile by username.
+      parameters:
+        - $ref: '#/components/parameters/UsernameParam'
+      responses:
+        "200":
+          description: Profile retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        "404":
+          description: Profile not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      operationId: update-profile
+      description: Update user profile by username.
+      parameters:
+        - $ref: '#/components/parameters/UsernameParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        "200":
+          description: Profile updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileResponse'
+        "404":
+          description: Profile not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      operationId: delete-profile
+      description: Delete user profile by username.
+      parameters:
+        - $ref: '#/components/parameters/UsernameParam'
+      responses:
+        "204":
+          description: Profile deleted successfully.
+        "404":
+          description: Profile not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    NewProfileRequest:
+      type: object
+      required:
+        - username
+        - name
+        - display_name
+        - email
+        - phone_number
+        - address
+        - date_of_birth
+        - nationality
+        - gender
+      properties:
+        username:
+          type: string
+          examples:
+            - saikrishnakotla125
+        name:
+          type: string
+          examples:
+            - Saikrishna Kotla
+        display_name:
+          type: string
+          examples:
+            - Choose a display name
+        email:
+          type: string
+          format: email
+          examples:
+            - saikrishnakotla125@gmail.com
+        phone_number:
+          type: string
+          pattern: '^\+\d{1,3}\d{9,15}$'
+          examples:
+            - '+16089773131'
+        address:
+          type: string
+          examples:
+            - 123 Main St, City, Country
+        date_of_birth:
+          type: string
+          examples:
+            - 1990-01-01
+        nationality:
+          type: string
+          examples:
+            - India
+        gender:
+          type: string
+          examples:
+            - Male
+
+    UpdateProfileRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        display_name:
+          type: string
+        email:
+          type: string
+          format: email
+        phone_number:
+          type: string
+          pattern: '^\+\d{1,3}\d{9,15}$'
+        address:
+          type: string
+        date_of_birth:
+          type: string
+        nationality:
+          type: string
+        gender:
+          type: string
+
+    ProfileResponse:
+      type: object
+      required:
+        - username
+        - name
+        - display_name
+        - email
+        - phone_number
+        - address
+        - date_of_birth
+        - nationality
+        - gender
+      properties:
+        username, name, display_name, email, phone_number, address, date_of_birth, nationality, gender:
+          type: string
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error message
+
+  parameters:
+    UsernameParam:
+      name: username
+      in: path
+      required: true
+      schema:
+        type: string

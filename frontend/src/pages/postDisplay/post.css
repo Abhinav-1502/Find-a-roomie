@@ -1,0 +1,33 @@
+.PostPaper{
+    margin: 5em 10em;
+    
+}
+.parentGrid{
+    padding: 3em 5em;
+}
+.gd-item-images{
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+.imageList-more{
+    height: 500px;
+}
+
+.postOverView{
+    padding: 4em 1em 4em 2em; 
+    gap: 2em;
+}
+
+.propDesc{ 
+    font-size: x-large !important;
+    text-align: justify;
+    padding: 2em;
+    padding-left: 0;
+}
+
+.listDisplay{
+    margin-top: 1em;
+    padding-left: 1em;
+}

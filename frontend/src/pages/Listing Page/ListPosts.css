@@ -1,0 +1,66 @@
+/* ListPosts.css */
+
+/* General page styling */
+.page-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  /* Styling for each post container */
+  .post-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Card styling */
+  .roomie-card {
+    flex-grow: 1;
+    margin-right: 20px;
+  }
+  
+  /* Paper styling */
+  .paper-container {
+    flex-grow: 2;
+    padding: 20px;
+    background-color: #f7f7f7;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Grid container inside paper */
+  .grid-container {
+    background-color: #EEE7DA;
+    padding: 20px;
+  }
+  
+  /* Typography styling */
+  .typography {
+    padding-bottom: 10px;
+    font-size: 1rem;
+    text-align: justify;
+    white-space: pre-wrap; /* Allows for line breaks */
+  }
+  
+  /* Button styling */
+  .details-button {
+    margin-top: 20px;
+    align-self: flex-end;
+  }
+  
+  /* Pagination styling */
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+
+  

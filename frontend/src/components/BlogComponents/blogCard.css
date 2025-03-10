@@ -1,0 +1,10 @@
+.blogPaper{
+    margin: 2em 20%;
+    text-align: left;
+}
+.commentBody{
+    padding: 0.5em 1em;
+    background-color: rgb(255, 255, 255) !important;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 5px;
+}
