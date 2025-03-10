@@ -1,6 +1,7 @@
 ## How to run a file
 
 1: Clone the project to your local 
+
 2: Install the all the necessary dependancies (frontend and backend) using 
 
 bash
