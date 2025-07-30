@@ -1,0 +1,75 @@
+
+/* App.css */
+
+.App {
+  text-align: center;
+}
+
+/* Dark theme styles */
+.App.dark {
+  background-color: #333;
+  color: white;
+}
+
+/* Dark theme button styles */
+.App.dark .MuiButton-root {
+  color: white; /* White text for buttons in dark theme */
+}
+
+/* Light theme styles */
+.App.light {
+  background-color: whitesmoke;
+  color: black;
+}
+
+/* Light theme button styles */
+.App.light .MuiButton-root {
+  color: black; /* Black text for buttons in light theme */
+}
+
+/* Existing styles (unchanged) */
+.Routes {
+  margin-top: 5em;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  text-align: center;
+}

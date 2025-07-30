@@ -1,0 +1,63 @@
+.footer-app {
+    display: flex;
+    justify-content: space-between; /* Arrange sections side by side */
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    color: #999;
+    border-top: 1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-family: sans-serif;
+    width: 100%;
+    z-index: 2;
+  }
+  
+  .footer-main {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .footer-main .MuiIconButton-root {
+    margin-right: 10px;
+  }
+  
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    margin: 0 -20px; /* Remove margin and add negative margin */
+    padding: 0; /* Remove padding */
+  }
+  
+  .footer-section a {
+    color: #999;
+    text-decoration: none;
+    margin-right: 20px; /* Add space between links */
+    font-size: 16px;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-contact-form {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .footer-contact-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-contact-form input,
+  .footer-contact-form textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  
+  .footer-contact-form .MuiIconButton-root {
+    margin-top: 10px;
+  }
+  

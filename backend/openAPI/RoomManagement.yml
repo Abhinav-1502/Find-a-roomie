@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: Room Management API
+  version: 'v1.0'
+paths:
+  /api/rooms:
+    get:
+      summary: List Available Rooms
+      description: Get a list of available rooms.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/RoomList'
+        "401":
+          description:  Unauthenticated request
+          content:
+            application/json:
+              schema:
+                type: object 
+                $ref: "#/components/schemas/Error"
+          
+
+    post:
+      summary: Create Room Listing
+      description: List a room as available with detailed preferences and amenities.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '201':
+          description: Room listing created successfully
+          content:
+            application/json:
+              example:
+                message: "Room listing created successfully"
+                room:
+                  $ref: '#/components/schemas/Room'
+        '400':
+          description: Bad request, check the request payload
+          content:
+            application/json:
+              example:
+                message: "Bad request, check the request payload"
+                details: "..."
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+
+  /api/rooms/{roomNumber}:
+    put:
+      summary: Update Room Listing
+      description: Update details of a room listing by room number.
+      parameters: 
+        - name: roomNumber
+          in: query
+          required: true
+          example: 101
+          description: unique id for room 
+          schema: 
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Room'
+      responses:
+        '200':
+          description: Room listing updated successfully
+          content:
+            application/json:
+              example:
+                message: "Room listing updated successfully"
+                room:
+                  $ref: '#/components/schemas/Room'
+        '400':
+          description: Bad request, check the request payload
+          content:
+            application/json:
+              example:
+                message: "Bad request, check the request payload"
+                details: "..."
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Room not found
+          content:
+            application/json:
+              example:
+                message: "Room not found"
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Delete Room Listing
+      description: Delete a room listing by room number.
+      parameters:
+        - name: roomNumber
+          in: query
+          description: The room number to delete.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Room listing deleted successfully
+          content:
+            application/json:
+              example:
+                message: "Room listing deleted successfully"
+        '404':
+          description: Room not found
+          content:
+            application/json:
+              example:
+                message: "Room not found"
+                schema:
+                  $ref: '#/components/schemas/ErrorResponse'
+
+
+components: 
+  schemas:
+    RoomList:
+      type: object
+      properties:
+        rooms:
+          type: array
+          items:
+            $ref: '#/components/schemas/Room'
+
+    Room:
+      type: object
+      properties:
+        roomNumber:
+          type: integer
+          examples: 
+            - 101
+            - 102
+            - 103
+        location:
+          type: string
+          examples: 
+            - boylston 
+            - fenway
+        preferences:
+          type: string
+          examples: 
+            - Laundry Included
+            - Spacious
+        amenities:
+          type: array
+          items:
+            type: string
+          examples: 
+            - [swimming pool, gym, yoga room]
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        details:
+          type: string
+    
+    Error:
+      type: object 
+      properties: 
+        code: 
+          type: string
+          description: Error code
+          examples: 
+            - AuthenticationError
+        message:
+          type: string 
+          description: Error Message
+          examples: 
+            - User is not Authenticated

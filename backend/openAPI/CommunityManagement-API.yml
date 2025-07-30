@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info: 
+  title: Community Blogs API
+  description: REST API to read, post, update and delete blogs.
+  version: 'v1.0'
+servers:
+ - url: http://localhost:8080
+paths:
+  /user_blogs/{blogID}:
+    put:
+      operationId: update-blog
+      description: update the blog with selected blog id
+      parameters: 
+        - name: blogID
+          in: path
+          required: true
+          example: blog89
+          description: unique Blog Id for identification
+          schema:
+            type: string 
+      requestBody: 
+        required: true
+        content: 
+          application/json: 
+            schema:
+              type: object
+              $ref: '#/components/schemas/Blogs'
+      responses: 
+        "200":
+          description: Blog Updated Successfully
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                $ref: '#/components/schemas/Blogs'
+        "401":
+          description:  Unauthenticated request
+          content:
+            application/json:
+              schema:
+                type: object 
+                $ref: "#/components/schemas/Error"
+              
+    delete: 
+      operationId: delete-blog
+      description: Delete the blog with selected blog id
+      parameters: 
+        - name: blogID
+          in: path
+          required: true
+          example: blog89
+          description: unique Blog Id for identification
+          schema:
+            type: string 
+      
+  /community_blogs:
+    get: 
+      operationId: search-blogs-postings
+      description: Retrieve all the blogs
+      parameters: 
+        - name: updated
+          in: query
+          required: false
+          example: Latest 
+          schema: 
+            type: string
+        - name: year
+          in: query
+          required: false
+          example: 2023
+          schema: 
+            type: string 
+      responses: 
+        "200":
+          description: Successful search
+          content: 
+            application/json: 
+              schema: 
+                type: object
+                $ref: "#/components/schemas/Blogs"
+        "401":
+          description:  Unauthenticated request
+          content:
+            application/json:
+              schema:
+                type: object 
+                $ref: "#/components/schemas/Error"
+    post:
+      operationId: post-new-blog
+      description: Post a new Blog
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/Blogs'
+      parameters:
+        - name: blogID
+          in: header 
+          required: true
+          description: unique Blog Id for identification
+          example: blog89
+          schema:
+            type: string
+      responses: 
+        '201':
+          description: Blog created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Blogs'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                error:
+                  message: "Invalid input data. Please check your request."
+
+components: 
+  schemas: 
+    Blogs:
+      type: object 
+      properties: 
+        blogID:
+          type: string
+          examples: 
+            - blog1
+        title:
+          type: string 
+          examples:
+            - Why does roommate qualities matter?
+        date:
+          type: string
+          examples: 
+            - "2023-11-14"
+        content:
+          type: string
+          examples: 
+            - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod 
+              libero nec lacus consectetur, ut pellentesque lectus mattis. Integer eget fermentum quam. Vivamus laoreet varius justo, id finibus tortor consectetur vel. Sed facilisis hendrerit tellus. Suspendisse potenti. Ut ac justo vel purus malesuada feugiat. Suspendisse potenti.
+    Error:
+      type: object 
+      properties: 
+        code: 
+          type: string
+          description: Error code
+          examples: 
+            - AuthenticationError
+        message:
+          type: string 
+          description: Error Message
+          examples: 
+            - User is not Authenticated
+
+    
